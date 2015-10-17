@@ -51,6 +51,10 @@
                         <p class="contry">{{tour.country}}</p>
                         <p class="text">{{tour.text}}</p>
                     </div>
+                    <div class="panel-footer">
+                        <button class="btn btn-success" ng-click="editTour($index)">Редактировать</button>
+                        <button class="btn btn-danger" ng-click="removeTour($index)">Удалить</button>
+                    </div>
                 </div>
             </div>
         </div>

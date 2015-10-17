@@ -32,6 +32,11 @@ app.controller('IndexController', function($scope){
         $scope.showForm = true;
     };
 
+    $scope.removeTour = function($index){
+       $scope.tours.splice($index, 1);
+        saveToLocalStorage();
+    };
+
 
     function saveToLocalStorage(){
         localStorage['tours'] = JSON.stringify($scope.tours, function (key, val) {

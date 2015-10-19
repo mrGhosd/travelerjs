@@ -13,13 +13,10 @@ app.controller('IndexController', function($scope){
     };
     $scope.saveTour = function(){
         var tourForm = $scope.tour;
-        var tour = {
-                title: tourForm.title,
-                text: tourForm.text,
-                price: tourForm.price,
-                country: tourForm.country
-        };
-        $scope.tourAction === 'create' ? $scope.tours.push(tour) : $scope.tours.splice($scope.tourIndex, 1, tour);
+        var tour = angular.copy($scope.tour);
+        if($scope.tourAction === 'create'){
+            $scope.tours.push(tour);
+        }
         $scope.showForm = false;
         $scope.tourIndex = null;
         saveToLocalStorage();

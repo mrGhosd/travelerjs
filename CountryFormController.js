@@ -3,7 +3,7 @@ angular.module('travelerjs').controller('CountryFormController', function($scope
 
     if(formAction === 'edit') {
         angular.forEach($scope.countries, function (country, index) {
-            if ($routeParams.slug == tour.name) {
+            if ($routeParams.slug == country.name) {
                 $scope.countryIndex = index;
                 $scope.country = country;
             }
@@ -13,7 +13,7 @@ angular.module('travelerjs').controller('CountryFormController', function($scope
     $scope.saveCountry = function(){
         var country = angular.copy($scope.country);
         formAction === 'create' ? $scope.countries.push(country) : $scope.countries[$scope.countryIndex] = country;
-        $scope.tourIndex = null;
+        $scope.countryIndex = null;
         saveToLocalStorage();
         $location.path('/');
         console.log($scope.countries);

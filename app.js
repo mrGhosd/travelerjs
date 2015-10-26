@@ -36,6 +36,15 @@ angular.module('travelerjs', ['ngRoute'])
                     }
                 }
             })
+            .when('/admin/countries/:slug/edit', {
+                templateUrl: 'country_form.html',
+                controller: 'CountryFormController',
+                resolve: {
+                    formAction: function(){
+                        return "edit";
+                    }
+                }
+            })
             .when('/countries', {
                 templateUrl: 'countries_list.html',
                 controller: 'CountriesController'

@@ -1,46 +1,47 @@
-var app = angular.module('travelerjs', []);
+angular.module('travelerjs', ['ngRoute'])
+    .config(function($routeProvider, $locationProvider){
+        $routeProvider
+            .when('/', {
+                templateUrl: 'travels.html',
+                controller: 'TravelsController'
+            })
+            .when('/admin/tours/:slug/edit', {
+                templateUrl: 'form.html',
+                controller: 'ToursFormController',
+                resolve: {
+                    formAction: function(){
+                        return "edit";
+                    }
+                }
+            })
+            .when('/admin/tours/new', {
+                templateUrl: 'form.html',
+                controller: 'ToursFormController',
+                resolve: {
+                    formAction: function(){
+                        return "create";
+                    }
+                }
+            })
+            .when('/tours/:slug', {
+                templateUrl: "tour.html",
+                controller: 'TourDetailController'
+            })
+            .otherwise({
+                redirectTo: '/'
+            });
 
-app.controller('IndexController', function($scope){
-    $scope.title = "Список туров";
-    $scope.tourAction = '';
-    $scope.showForm = false;
-    $scope.tourIndex = null;
-    $scope.tours = localStorage['tours'] ? JSON.parse(localStorage['tours']) : [];
-    $scope.toggleTourForm = function(){
-        $scope.tourAction = 'create';
-        $scope.tour = null;
-        $scope.showForm = !$scope.showForm;
-    };
-    $scope.saveTour = function(){
-        var tourForm = $scope.tour;
-        var tour = angular.copy($scope.tour);
-        if($scope.tourAction === 'create'){
-            $scope.tours.push(tour);
-        }
-        $scope.showForm = false;
-        $scope.tourIndex = null;
-        saveToLocalStorage();
-    };
-
-    $scope.editTour = function($index){
-        $scope.tourIndex = $index;
-        $scope.tourAction = 'edit';
-        $scope.tour= $scope.tours[$index];
-        $scope.showForm = true;
-    };
-
-    $scope.removeTour = function($index){
-       $scope.tours.splice($index, 1);
-        saveToLocalStorage();
-    };
-
-
-    function saveToLocalStorage(){
-        localStorage['tours'] = JSON.stringify($scope.tours, function (key, val) {
-            if (key == '$$hashKey') {
-                return undefined;
-            }
-            return val;
+        $locationProvider.html5Mode(true);
+    })
+    .run(function($rootScope, $route, $location){
+        $rootScope.$on('$locationChangeStart', function(event, next, current){
+          //var nextPath = $location.path;
+          //var nextRoute = $route.routes[nextPath] || $route.routes['/tours/:slug'];
+          //if(!nextRoute.publicAccess){
+          //    alert('You must be signed in!');
+          //    $location.path('/');
+          //}
         });
-    }
-});
+    });
+
+

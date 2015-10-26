@@ -27,6 +27,15 @@ angular.module('travelerjs', ['ngRoute'])
                 templateUrl: "tour.html",
                 controller: 'TourDetailController'
             })
+            .when('/admin/countries/new', {
+                templateUrl: 'country_form.html',
+                controller: 'CountryFormController',
+                resolve: {
+                    formAction: function(){
+                        return "create";
+                    }
+                }
+            })
             .otherwise({
                 redirectTo: '/'
             });

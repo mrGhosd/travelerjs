@@ -1,9 +1,9 @@
 angular.module('travelerjs').controller('ToursFormController', function($scope, $location, $routeParams, formAction){
-    console.log(formAction);
     $scope.tourAction = '';
     $scope.showForm = false;
     $scope.tourIndex = null;
     var tours = $scope.tours = localStorage['tours'] ? JSON.parse(localStorage['tours']) : [];
+    $scope.countries = localStorage['countries'] ? JSON.parse(localStorage['countries']) : [];
     if(formAction === 'edit') {
         angular.forEach(tours, function (tour, index) {
             if ($routeParams.slug == tour.title) {
@@ -18,7 +18,6 @@ angular.module('travelerjs').controller('ToursFormController', function($scope, 
         var tour = { title: tourForm.title, country: tourForm.country, price: tourForm.price,
         text: tourForm.text };
         formAction === 'create' ? $scope.tours.push(tour) : $scope.tours[$scope.tourIndex] = tour;
-        $scope.showForm = false;
         $scope.tourIndex = null;
         saveToLocalStorage();
         $location.path('/');

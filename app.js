@@ -36,6 +36,10 @@ angular.module('travelerjs', ['ngRoute'])
                     }
                 }
             })
+            .when('/countries', {
+                templateUrl: 'countries_list.html',
+                controller: 'CountriesController'
+            })
             .otherwise({
                 redirectTo: '/'
             });

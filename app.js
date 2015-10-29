@@ -1,46 +1,78 @@
-var app = angular.module('travelerjs', []);
+angular.module('travelerjs', ['ngRoute'])
+    .config(function($routeProvider, $locationProvider, $httpProvider){
+        $routeProvider
+            .when('/', {
+                templateUrl: 'travels.html',
+                controller: 'TravelsController',
+                resolve: {
+                    tours: ['Tours', function(Tours){
+                        return Tours.getAll();
+                    }]
+                }
+            })
+            .when('/admin/tours/:slug/edit', {
+                templateUrl: 'form.html',
+                controller: 'ToursFormController',
+                resolve: {
+                    formAction: function(){
+                        return "edit";
+                    }
+                }
+            })
+            .when('/admin/tours/new', {
+                templateUrl: 'form.html',
+                controller: 'ToursFormController',
+                resolve: {
+                    formAction: function(){
+                        return "create";
+                    }
+                }
+            })
+            .when('/tours/:slug', {
+                templateUrl: "tour.html",
+                controller: 'TourDetailController'
+            })
+            .when('/admin/countries/new', {
+                templateUrl: 'country_form.html',
+                controller: 'CountryFormController',
+                resolve: {
+                    formAction: function(){
+                        return "create";
+                    }
+                }
+            })
+            .when('/admin/countries/:slug/edit', {
+                templateUrl: 'country_form.html',
+                controller: 'CountryFormController',
+                resolve: {
+                    formAction: function(){
+                        return "edit";
+                    }
+                }
+            })
+            .when('/countries', {
+                templateUrl: 'countries_list.html',
+                controller: 'CountriesController'
+            })
+            .otherwise({
+                redirectTo: '/'
+            });
 
-app.controller('IndexController', function($scope){
-    $scope.title = "Список туров";
-    $scope.tourAction = '';
-    $scope.showForm = false;
-    $scope.tourIndex = null;
-    $scope.tours = localStorage['tours'] ? JSON.parse(localStorage['tours']) : [];
-    $scope.toggleTourForm = function(){
-        $scope.tourAction = 'create';
-        $scope.tour = null;
-        $scope.showForm = !$scope.showForm;
-    };
-    $scope.saveTour = function(){
-        var tourForm = $scope.tour;
-        var tour = angular.copy($scope.tour);
-        if($scope.tourAction === 'create'){
-            $scope.tours.push(tour);
-        }
-        $scope.showForm = false;
-        $scope.tourIndex = null;
-        saveToLocalStorage();
-    };
-
-    $scope.editTour = function($index){
-        $scope.tourIndex = $index;
-        $scope.tourAction = 'edit';
-        $scope.tour= $scope.tours[$index];
-        $scope.showForm = true;
-    };
-
-    $scope.removeTour = function($index){
-       $scope.tours.splice($index, 1);
-        saveToLocalStorage();
-    };
-
-
-    function saveToLocalStorage(){
-        localStorage['tours'] = JSON.stringify($scope.tours, function (key, val) {
-            if (key == '$$hashKey') {
-                return undefined;
-            }
-            return val;
+        $locationProvider.html5Mode(true);
+        $httpProvider.defaults.headers.common = {
+            "X-Parse-Application-Id": "v2AEWIGP7tTYAoCD8M6Jm6MiXrAm9gP2jTeVHvFK",
+            "X-Parse-REST-API-Key": "B60EXnlZa9LUgAqN7KmlXV5hAuM8NvqzKP4IFGj1"
+        };
+    })
+    .run(function($rootScope, $route, $location){
+        $rootScope.$on('$locationChangeStart', function(event, next, current){
+          //var nextPath = $location.path;
+          //var nextRoute = $route.routes[nextPath] || $route.routes['/tours/:slug'];
+          //if(!nextRoute.publicAccess){
+          //    alert('You must be signed in!');
+          //    $location.path('/');
+          //}
         });
-    }
-});
+    });
+
+

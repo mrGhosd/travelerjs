@@ -1,6 +1,4 @@
-angular.module('travelerjs').controller('TravelsController', function($scope){
+angular.module('travelerjs').controller('TravelsController', ['tours', '$scope', '$http', function(tours, $scope, $http){
     $scope.title = "Список туров";
-    $scope.tours = localStorage['tours'] ? JSON.parse(localStorage['tours']) : [];
-    console.log($scope.tours);
-
-});
+    $scope.tours = tours;
+}]);

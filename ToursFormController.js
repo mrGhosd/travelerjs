@@ -16,7 +16,7 @@ angular.module('travelerjs').controller('ToursFormController', function($scope, 
     $scope.saveTour = function(){
         var tourForm = angular.copy($scope.tour);
         var tour = { title: tourForm.title, country: tourForm.country, price: tourForm.price,
-        text: tourForm.text };
+        description: tourForm.description };
         formAction === 'create' ? $scope.tours.push(tour) : $scope.tours[$scope.tourIndex] = tour;
         $scope.tourIndex = null;
         saveToLocalStorage();

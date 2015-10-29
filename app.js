@@ -1,9 +1,14 @@
 angular.module('travelerjs', ['ngRoute'])
-    .config(function($routeProvider, $locationProvider){
+    .config(function($routeProvider, $locationProvider, $httpProvider){
         $routeProvider
             .when('/', {
                 templateUrl: 'travels.html',
-                controller: 'TravelsController'
+                controller: 'TravelsController',
+                resolve: {
+                    tours: ['Tours', function(Tours){
+                        return Tours.getAll();
+                    }]
+                }
             })
             .when('/admin/tours/:slug/edit', {
                 templateUrl: 'form.html',
@@ -54,6 +59,10 @@ angular.module('travelerjs', ['ngRoute'])
             });
 
         $locationProvider.html5Mode(true);
+        $httpProvider.defaults.headers.common = {
+            "X-Parse-Application-Id": "v2AEWIGP7tTYAoCD8M6Jm6MiXrAm9gP2jTeVHvFK",
+            "X-Parse-REST-API-Key": "B60EXnlZa9LUgAqN7KmlXV5hAuM8NvqzKP4IFGj1"
+        };
     })
     .run(function($rootScope, $route, $location){
         $rootScope.$on('$locationChangeStart', function(event, next, current){

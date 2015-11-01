@@ -14,6 +14,12 @@ angular.module('travelerjs', ['ngRoute'])
                 templateUrl: 'form.html',
                 controller: 'ToursFormController',
                 resolve: {
+                    tour: ['Tours', '$route', function(Tours, $route){
+                        return Tours.get($route.current.params.slug);
+                    }],
+                    countries: ["Countries", function(Countries){
+                        return Countries.getAll();
+                    }],
                     formAction: function(){
                         return "edit";
                     }
@@ -28,12 +34,20 @@ angular.module('travelerjs', ['ngRoute'])
                     },
                     countries: ["Countries", function(Countries){
                         return Countries.getAll();
-                    }]
+                    }],
+                    tour: function(){
+                        return {};
+                    }
                 }
             })
             .when('/tours/:slug', {
                 templateUrl: "tour.html",
-                controller: 'TourDetailController'
+                controller: 'TourDetailController',
+                resolve: {
+                    tour: ['Tours', '$route', function(Tours, $route){
+                      return Tours.get($route.current.params.slug);
+                    }]
+                }
             })
             .when('/admin/countries/new', {
                 templateUrl: 'country_form.html',

@@ -1,18 +1,11 @@
 angular.module('travelerjs').controller('ToursFormController', ["$scope", "$location",
-    "$routeParams", "formAction", "countries", "ApiRequest", function($scope, $location, $routeParams, formAction, countries, ApiRequest){
+    "$routeParams", "formAction", "countries", "ApiRequest", 'tour', 'Tours', function($scope, $location, $routeParams, formAction, countries, ApiRequest, tour, Tours){
     $scope.tourAction = '';
     $scope.showForm = false;
     $scope.tourIndex = null;
-    var tours = $scope.tours = localStorage['tours'] ? JSON.parse(localStorage['tours']) : [];
+    $scope.tour = tour;
+    $scope.tour.country = tour.Country.objectId;
     $scope.countries = countries;
-    if(formAction === 'edit') {
-        angular.forEach(tours, function (tour, index) {
-            if ($routeParams.slug == tour.title) {
-                $scope.tourIndex = index;
-                $scope.tour = tour;
-            }
-        });
-    }
 
     $scope.saveTour = function(){
         var tourForm = angular.copy($scope.tour);
@@ -23,16 +16,19 @@ angular.module('travelerjs').controller('ToursFormController', ["$scope", "$loca
             Country: {__type: "Pointer", className: "Country", objectId: tourForm.country}
         };
         if(formAction === 'create'){
-            ApiRequest.post("/Tour", tour)
+            Tours.create(tour)
                 .then(function(response) {
+                    $location.path('/');
                 console.log(response);
             });
         } else {
-
+            Tours.update($scope.tour.objectId, tour)
+                .then(function(response) {
+                    console.log(response);
+                    $location.path('/');
+                });
         }
 
-        $scope.tourIndex = null;
-        $location.path('/');
     };
 
     $scope.editTour = function($index){

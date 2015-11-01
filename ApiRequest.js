@@ -20,6 +20,15 @@ angular.module('travelerjs').service('ApiRequest', ['$http', '$q', function($htt
                 throw errors;
             }))
     };
+    object.put = function(url, parameters) {
+        return $http.put(wrapUrl(url), parameters )
+            .then(function(response){
+                return response;
+            })
+            .catch((function(errors){
+                throw errors;
+            }))
+    };
 
     function wrapUrl(url){
         return "https://api.parse.com/1/classes" + url;

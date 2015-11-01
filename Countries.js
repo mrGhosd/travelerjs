@@ -4,8 +4,12 @@ angular.module('travelerjs').factory('Countries', [ '$http', '$q', 'ApiRequest',
         searchResults: []
     };
     object.getAll = function() {
-        return ApiRequest.get("/Country").then(function(response){
+        return ApiRequest.get("/Country")
+        .then(function(response){
             return response.data.results;
+        })
+        .catch(function(errors){
+            return errors;
         });
     };
 

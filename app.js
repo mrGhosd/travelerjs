@@ -25,7 +25,10 @@ angular.module('travelerjs', ['ngRoute'])
                 resolve: {
                     formAction: function(){
                         return "create";
-                    }
+                    },
+                    countries: ["Countries", function(Countries){
+                        return Countries.getAll();
+                    }]
                 }
             })
             .when('/tours/:slug', {

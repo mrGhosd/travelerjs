@@ -1,9 +1,10 @@
-angular.module('travelerjs').controller('ToursFormController', function($scope, $location, $routeParams, formAction){
+angular.module('travelerjs').controller('ToursFormController', ["$scope", "$location",
+    "$routeParams", "formAction", "countries", "ApiRequest", function($scope, $location, $routeParams, formAction, countries, ApiRequest){
     $scope.tourAction = '';
     $scope.showForm = false;
     $scope.tourIndex = null;
     var tours = $scope.tours = localStorage['tours'] ? JSON.parse(localStorage['tours']) : [];
-    $scope.countries = localStorage['countries'] ? JSON.parse(localStorage['countries']) : [];
+    $scope.countries = countries;
     if(formAction === 'edit') {
         angular.forEach(tours, function (tour, index) {
             if ($routeParams.slug == tour.title) {
@@ -15,11 +16,22 @@ angular.module('travelerjs').controller('ToursFormController', function($scope, 
 
     $scope.saveTour = function(){
         var tourForm = angular.copy($scope.tour);
-        var tour = { title: tourForm.title, country: tourForm.country, price: tourForm.price,
-        description: tourForm.description };
-        formAction === 'create' ? $scope.tours.push(tour) : $scope.tours[$scope.tourIndex] = tour;
+        var tour = {title: tourForm.title,
+            price: tourForm.price,
+            description: tourForm.description,
+            slug: tourForm.slug,
+            Country: {__type: "Pointer", className: "Country", objectId: tourForm.country}
+        };
+        if(formAction === 'create'){
+            ApiRequest.post("/Tour", tour)
+                .then(function(response) {
+                console.log(response);
+            });
+        } else {
+
+        }
+
         $scope.tourIndex = null;
-        saveToLocalStorage();
         $location.path('/');
     };
 
@@ -35,7 +47,6 @@ angular.module('travelerjs').controller('ToursFormController', function($scope, 
         saveToLocalStorage();
     };
 
-
     function saveToLocalStorage(){
         localStorage['tours'] = JSON.stringify($scope.tours, function (key, val) {
             if (key == '$$hashKey') {
@@ -44,4 +55,4 @@ angular.module('travelerjs').controller('ToursFormController', function($scope, 
             return val;
         });
     }
-});
+}]);

@@ -4,7 +4,7 @@ angular.module('travelerjs').factory('Tours', [ '$http', '$q', 'ApiRequest', fun
         searchResults: []
     };
     object.getAll = function() {
-        return ApiRequest.get("/Tour").then(function(response){
+        return ApiRequest.get("/Tour?include=Country").then(function(response){
             return response.data.results;
         });
     };

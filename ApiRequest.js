@@ -2,7 +2,6 @@ angular.module('travelerjs').service('ApiRequest', ['$http', '$q', function($htt
     var object = {};
 
     object.get = function(url, parameters){
-        console.log(wrapUrl(url));
         return $http.get(wrapUrl(url), {params: parameters})
             .then(function(response){
                 return response;
@@ -12,6 +11,15 @@ angular.module('travelerjs').service('ApiRequest', ['$http', '$q', function($htt
             }))
     };
 
+    object.post = function(url, parameters) {
+        return $http.post(wrapUrl(url), parameters  )
+            .then(function(response){
+                return response;
+            })
+            .catch((function(errors){
+                throw errors;
+            }))
+    };
 
     function wrapUrl(url){
         return "https://api.parse.com/1/classes" + url;

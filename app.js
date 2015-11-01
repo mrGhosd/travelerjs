@@ -55,6 +55,9 @@ angular.module('travelerjs', ['ngRoute'])
                 resolve: {
                     formAction: function(){
                         return "create";
+                    },
+                    country: function(){
+                        return {};
                     }
                 }
             })
@@ -62,6 +65,9 @@ angular.module('travelerjs', ['ngRoute'])
                 templateUrl: 'country_form.html',
                 controller: 'CountryFormController',
                 resolve: {
+                    country: ['Countries', '$route', function(Countries, $route){
+                        return Countries.get($route.current.params.slug)
+                    }],
                     formAction: function(){
                         return "edit";
                     }
@@ -69,7 +75,12 @@ angular.module('travelerjs', ['ngRoute'])
             })
             .when('/countries', {
                 templateUrl: 'countries_list.html',
-                controller: 'CountriesController'
+                controller: 'CountriesController',
+                resolve: {
+                    countries: ['Countries', function(Countries){
+                        return Countries.getAll();
+                    }]
+                }
             })
             .otherwise({
                 redirectTo: '/'

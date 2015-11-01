@@ -1,3 +1,4 @@
-angular.module('travelerjs').controller('CountriesController', function($scope, $routeParams, $location){
-    $scope.countries = localStorage['countries'] ? JSON.parse(localStorage['countries']) : [];
-});
+angular.module('travelerjs').controller('CountriesController', ['$scope', '$routeParams', 'countries',
+    function($scope, $routeParams, countries){
+    $scope.countries = countries;
+}]);

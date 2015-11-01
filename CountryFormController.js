@@ -1,22 +1,19 @@
-angular.module('travelerjs').controller('CountryFormController', function($scope, $routeParams, $location, formAction){
-    $scope.countries = localStorage['countries'] ? JSON.parse(localStorage['countries']) : [];
-
-    if(formAction === 'edit') {
-        angular.forEach($scope.countries, function (country, index) {
-            if ($routeParams.slug == country.name) {
-                $scope.countryIndex = index;
-                $scope.country = country;
-            }
-        });
-    }
+angular.module('travelerjs').controller('CountryFormController', ['$scope', '$routeParams', '$location', 'formAction',
+    'country', 'Countries',  function($scope, $routeParams, $location, formAction, country, Countries){
+    $scope.country = country;
 
     $scope.saveCountry = function(){
         var country = angular.copy($scope.country);
-        formAction === 'create' ? $scope.countries.push(country) : $scope.countries[$scope.countryIndex] = country;
-        $scope.countryIndex = null;
-        saveToLocalStorage();
-        $location.path('/');
-        console.log($scope.countries);
+        console.log(country);
+        if(formAction === 'create'){
+         Countries.create(country).then(function(){
+             $location.path('/');
+         });
+        } else {
+            Countries.update($scope.country.objectId, country).then(function(){
+                $location.path('/');
+            });
+        }
     };
 
 
@@ -28,4 +25,4 @@ angular.module('travelerjs').controller('CountryFormController', function($scope
             return val;
         });
     }
-});
+}]);

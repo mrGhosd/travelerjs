@@ -7,6 +7,9 @@ angular.module('travelerjs', ['ngRoute'])
                 resolve: {
                     tours: ['Tours', function(Tours){
                         return Tours.getAll();
+                    }],
+                    places: ['Place', function(Place){
+                       return Place.getAll();
                     }]
                 }
             })

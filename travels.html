@@ -4,6 +4,11 @@
     <a ng-href="/admin/countries/new" class="btn btn-primary">Добавить страну</a>
     <a ng-href="/admin/places/new" class="btn btn-primary">Добавить место</a>
 </div>
+<select ng-model="tour.country" ng-change="filterTours()">
+    <option ng-repeat="place in places" value="{{place.name}}" >
+        {{place.name}}
+    </option>
+</select>
 <div ng-repeat="tour in tours" class="panel panel-default">
     <div class="panel-heading">
         <a ng-href="/tours/{{tour.objectId}}" class="title">{{tour.title}}</a>

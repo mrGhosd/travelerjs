@@ -1,0 +1,13 @@
+<a ng-href="/admin/places/new" class="btn btn-primary">Добавить место</a>
+<table class="table table-bordered">
+    <tr>
+        <th>Название</th>
+        <th>Действия</th>
+    </tr>
+    <tr ng-repeat="place in places">
+        <td>{{place.name}}</td>
+        <td>
+            <a ng-href="/admin/places/{{place.objectId}}/edit" class="btn btn-success"> Редактировать</a>
+        </td>
+    </tr>
+</table>

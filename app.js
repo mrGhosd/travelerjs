@@ -25,6 +25,39 @@ angular.module('travelerjs', ['ngRoute'])
                     }
                 }
             })
+            .when('/places', {
+                templateUrl: 'places_list.html',
+                controller: 'PlacesController',
+                resolve: {
+                    places: ['Place', function(Place){
+                        return Place.getAll();
+                    }]
+                }
+            })
+            .when('/admin/places/new', {
+                templateUrl: 'place_form.html',
+                controller: 'PlacesFormController',
+                resolve: {
+                    formAction: function(){
+                        return "create";
+                    },
+                    place: function(){
+                        return {};
+                    }
+                }
+            })
+            .when('/admin/places/:id/edit', {
+                templateUrl: 'place_form.html',
+                controller: 'PlacesFormController',
+                resolve: {
+                    formAction: function(){
+                        return "edit";
+                    },
+                    place: ['Place', '$route', function(Place, $route){
+                        return Place.get($route.current.params.id);
+                    }]
+                }
+            })
             .when('/admin/tours/new', {
                 templateUrl: 'form.html',
                 controller: 'ToursFormController',
@@ -58,7 +91,19 @@ angular.module('travelerjs', ['ngRoute'])
                     },
                     country: function(){
                         return {};
-                    }
+                    },
+                    places: ['Place', function(Place){
+                       return Place.getAll();
+                    }]
+                }
+            })
+            .when('/admin/countries', {
+                templateUrl: 'countries_list.html',
+                controller: 'CountriesController',
+                resolve: {
+                    countries: ['Countries', function(Countries){
+                        return Countries.getAll();
+                    }]
                 }
             })
             .when('/admin/countries/:slug/edit', {
@@ -70,7 +115,10 @@ angular.module('travelerjs', ['ngRoute'])
                     }],
                     formAction: function(){
                         return "edit";
-                    }
+                    },
+                    places: ['Place', function(Place){
+                        return Place.getAll();
+                    }]
                 }
             })
             .when('/countries', {

@@ -1,6 +1,12 @@
-angular.module('travelerjs').controller('PlacesFormController', ['$scope', '$routeParams',
-    'place','formAction', 'Place', '$location', function($scope, $routeParams, place, formAction, Place, $location){
-        $scope.place = place;
+angular.module('travelerjs').controller('PlacesFormController', ['$scope', '$route',
+    'formAction', 'Place', '$location', function($scope, $route, formAction, Place, $location){
+        if(formAction === 'create'){
+            $scope.place = {};
+        } else {
+            Place.get($route.current.params.id).then(function(response){
+               $scope.place = response;
+            });
+        }
 
         $scope.savePlace = function(){
             var place = angular.copy($scope.place);

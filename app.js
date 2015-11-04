@@ -37,9 +37,6 @@ angular.module('travelerjs', ['ngRoute'])
                 resolve: {
                     formAction: function(){
                         return "create";
-                    },
-                    place: function(){
-                        return {};
                     }
                 }
             })
@@ -49,10 +46,7 @@ angular.module('travelerjs', ['ngRoute'])
                 resolve: {
                     formAction: function(){
                         return "edit";
-                    },
-                    place: ['Place', '$route', function(Place, $route){
-                        return Place.get($route.current.params.id);
-                    }]
+                    }
                 }
             })
             .when('/admin/tours/new', {

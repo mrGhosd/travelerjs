@@ -1,7 +1,16 @@
-angular.module('travelerjs').controller('CountryFormController', ['$scope', '$routeParams', '$location', 'formAction',
-    'country', 'Countries', 'places',  function($scope, $routeParams, $location, formAction, country, Countries, places){
-    $scope.country = country;
-    $scope.places = places;
+angular.module('travelerjs').controller('CountryFormController', ['$scope', '$route', '$location', 'formAction',
+    'Countries', 'Place',  function($scope, $route, $location, formAction, Countries, Place){
+        if(formAction === 'create'){
+            $scope.country = {}
+        } else {
+            Countries.get($route.current.params.slug).then(function(response){
+               $scope.country = response;
+            });
+        }
+
+        Place.getAll().then(function(response){
+            $scope.places = response;
+        });
 
     $scope.saveCountry = function(){
         var country = angular.copy($scope.country);
@@ -16,14 +25,4 @@ angular.module('travelerjs').controller('CountryFormController', ['$scope', '$ro
             });
         }
     };
-
-
-    function saveToLocalStorage(){
-        localStorage['countries'] = JSON.stringify($scope.countries, function (key, val) {
-            if (key == '$$hashKey') {
-                return undefined;
-            }
-            return val;
-        });
-    }
 }]);

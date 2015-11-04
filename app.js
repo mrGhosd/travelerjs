@@ -79,13 +79,7 @@ angular.module('travelerjs', ['ngRoute'])
                 resolve: {
                     formAction: function(){
                         return "create";
-                    },
-                    country: function(){
-                        return {};
-                    },
-                    places: ['Place', function(Place){
-                       return Place.getAll();
-                    }]
+                    }
                 }
             })
             .when('/admin/countries', {
@@ -101,15 +95,9 @@ angular.module('travelerjs', ['ngRoute'])
                 templateUrl: 'country_form.html',
                 controller: 'CountryFormController',
                 resolve: {
-                    country: ['Countries', '$route', function(Countries, $route){
-                        return Countries.get($route.current.params.slug)
-                    }],
                     formAction: function(){
                         return "edit";
-                    },
-                    places: ['Place', function(Place){
-                        return Place.getAll();
-                    }]
+                    }
                 }
             })
             .when('/countries', {
@@ -133,12 +121,6 @@ angular.module('travelerjs', ['ngRoute'])
     })
     .run(function($rootScope, $route, $location){
         $rootScope.$on('$locationChangeStart', function(event, next, current){
-          //var nextPath = $location.path;
-          //var nextRoute = $route.routes[nextPath] || $route.routes['/tours/:slug'];
-          //if(!nextRoute.publicAccess){
-          //    alert('You must be signed in!');
-          //    $location.path('/');
-          //}
         });
     });
 

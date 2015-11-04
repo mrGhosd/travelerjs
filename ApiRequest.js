@@ -2,32 +2,14 @@ angular.module('travelerjs').service('ApiRequest', ['$http', '$q', function($htt
     var object = {};
 
     object.get = function(url, parameters){
-        return $http.get(wrapUrl(url), {params: parameters})
-            .then(function(response){
-                return response;
-            })
-            .catch((function(errors){
-                throw errors;
-            }))
+        return $http.get(wrapUrl(url), {params: parameters});
     };
 
     object.post = function(url, parameters) {
-        return $http.post(wrapUrl(url), parameters  )
-            .then(function(response){
-                return response;
-            })
-            .catch((function(errors){
-                throw errors;
-            }))
+        return $http.post(wrapUrl(url), parameters);
     };
     object.put = function(url, parameters) {
-        return $http.put(wrapUrl(url), parameters )
-            .then(function(response){
-                return response;
-            })
-            .catch((function(errors){
-                throw errors;
-            }))
+        return $http.put(wrapUrl(url), parameters );
     };
 
     function wrapUrl(url){

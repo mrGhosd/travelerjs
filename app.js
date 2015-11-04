@@ -17,12 +17,6 @@ angular.module('travelerjs', ['ngRoute'])
                 templateUrl: 'form.html',
                 controller: 'ToursFormController',
                 resolve: {
-                    tour: ['Tours', '$route', function(Tours, $route){
-                        return Tours.get($route.current.params.slug);
-                    }],
-                    countries: ["Countries", function(Countries){
-                        return Countries.getAll();
-                    }],
                     formAction: function(){
                         return "edit";
                     }
@@ -67,12 +61,6 @@ angular.module('travelerjs', ['ngRoute'])
                 resolve: {
                     formAction: function(){
                         return "create";
-                    },
-                    countries: ["Countries", function(Countries){
-                        return Countries.getAll();
-                    }],
-                    tour: function(){
-                        return {};
                     }
                 }
             })

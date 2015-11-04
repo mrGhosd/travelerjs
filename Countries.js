@@ -7,9 +7,6 @@ angular.module('travelerjs').factory('Countries', [ '$http', '$q', 'ApiRequest',
         return ApiRequest.get("/Country?include=place")
         .then(function(response){
             return response.data.results;
-        })
-        .catch(function(errors){
-            return errors;
         });
     };
 
@@ -17,9 +14,6 @@ angular.module('travelerjs').factory('Countries', [ '$http', '$q', 'ApiRequest',
         return ApiRequest.get("/Country/"+id+"?include=place")
             .then(function(response){
                 return response.data;
-            })
-            .catch(function(errors){
-                return errors;
             });
     };
 
@@ -27,9 +21,6 @@ angular.module('travelerjs').factory('Countries', [ '$http', '$q', 'ApiRequest',
         return ApiRequest.post("/Country", country)
             .then(function(response){
                 return response.data;
-            })
-            .catch(function(errors){
-                return errors;
             });
     };
 
@@ -37,11 +28,8 @@ angular.module('travelerjs').factory('Countries', [ '$http', '$q', 'ApiRequest',
         return ApiRequest.put("/Country/"+id, country)
             .then(function(response){
                 return response.data;
-            })
-            .catch(function(errors){
-                return errors;
             });
-    }
+    };
 
     return object;
 }]);

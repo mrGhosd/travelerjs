@@ -103,6 +103,34 @@ angular.module('travelerjs', ['ngRoute'])
                     }]
                 }
             })
+
+            .when('/hotels', {
+                templateUrl: 'hotels_list.html',
+                controller: 'HotelsController',
+                resolve: {
+                    hotels: ['Hotel', function(Hotel){
+                        return Hotel.getAll();
+                    }]
+                }
+            })
+            .when('/admin/hotels/new', {
+                templateUrl: 'hotels_form.html',
+                controller: 'HotelsFormController',
+                resolve: {
+                    formAction: function(){
+                        return 'create';
+                    }
+                }
+            })
+            .when('/admin/hotels/:id/edit', {
+                templateUrl: 'hotels_form.html',
+                controller: 'HotelsFormController',
+                resolve: {
+                    formAction: function(){
+                        return 'edit';
+                    }
+                }
+            })
             .otherwise({
                 redirectTo: '/'
             });

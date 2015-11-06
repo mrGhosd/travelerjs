@@ -1,15 +1,15 @@
-angular.module('travelerjs').controller('TravelsController', ['tours', '$scope', '$http', 'places',
-    function(tours, $scope, $http, places){
+angular.module('travelerjs').controller('TravelsController', ['tours', '$scope', '$http', 'countries', 'Place',
+    function(tours, $scope, $http, countries, Place){
     $scope.title = "Список туров";
     $scope.tours = tours;
     var toursList = tours;
-    $scope.places = places;
+    $scope.countries = countries;
 
     $scope.filterTours = function(value){
         var filterTours = [];
         var tours = angular.copy($scope.tours);
         angular.forEach(toursList, function(value, index){
-           if(value.place.name === $scope.tour.place ){
+           if(value.Country.name === $scope.tour.country){
                filterTours.push(value);
            }
         });

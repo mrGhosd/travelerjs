@@ -8,8 +8,8 @@ angular.module('travelerjs', ['ngRoute'])
                     tours: ['Tours', function(Tours){
                         return Tours.getAll();
                     }],
-                    places: ['Place', function(Place){
-                       return Place.getAll();
+                    countries: ['Countries', function(Countries){
+                       return Countries.getAll();
                     }]
                 }
             })

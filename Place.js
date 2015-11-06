@@ -5,7 +5,7 @@ angular.module('travelerjs').factory('Place', [ '$http', '$q', 'ApiRequest', fun
     };
 
     object.getAll = function() {
-        return ApiRequest.get("/Place").then(function(response){
+        return ApiRequest.get("/Place?include=country").then(function(response){
             return response.data.results;
         });
     };

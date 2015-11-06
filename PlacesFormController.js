@@ -1,5 +1,5 @@
 angular.module('travelerjs').controller('PlacesFormController', ['$scope', '$route',
-    'formAction', 'Place', '$location', function($scope, $route, formAction, Place, $location){
+    'formAction', 'Place', '$location', 'Countries', function($scope, $route, formAction, Place, $location, Countries){
         if(formAction === 'create'){
             $scope.place = {};
         } else {
@@ -7,9 +7,13 @@ angular.module('travelerjs').controller('PlacesFormController', ['$scope', '$rou
                $scope.place = response;
             });
         }
+        Countries.getAll().then(function(response){
+            $scope.countries = response;
+        });
 
         $scope.savePlace = function(){
             var place = angular.copy($scope.place);
+            place.country = {__type: "Pointer", className: "Country", objectId: place.country };
             if(formAction === 'create') {
                 Place.create(place)
                 .then(function(){

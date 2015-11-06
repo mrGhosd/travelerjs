@@ -8,10 +8,6 @@ angular.module('travelerjs').controller('CountryFormController', ['$scope', '$ro
             });
         }
 
-        Place.getAll().then(function(response){
-            $scope.places = response;
-        });
-
     $scope.saveCountry = function(){
         var country = angular.copy($scope.country);
         country.place = {__type: "Pointer", className: "Place", objectId: country.place};

@@ -19,8 +19,18 @@
         <label class="control-label col-md-2">Место</label>
         <div class="col-md-4">
             <select ng-model="tour.place">
-                <option ng-repeat="place in places" value="{{place.objectId}}" ng-selected="tour.place.name === place.name">
+                <option ng-repeat="place in places" value="{{place.objectId}}" ng-selected="tour.place.objectId=== place.objectId">
                     {{place.name}}
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Отель</label>
+        <div class="col-md-4">
+            <select ng-model="tour.hotel">
+                <option ng-repeat="hotel in hotels" value="{{hotel.objectId}}" ng-selected="tour.hotel.objectId === hotel.objectId">
+                    {{hotel.name}}
                 </option>
             </select>
         </div>

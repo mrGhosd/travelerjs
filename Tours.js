@@ -5,13 +5,13 @@ angular.module('travelerjs').factory('Tours', [ '$http', '$q', 'ApiRequest', fun
     };
 
     object.getAll = function() {
-        return ApiRequest.get("/Tour?include=Country,place").then(function(response){
+        return ApiRequest.get("/Tour?include=Country,place,hotel").then(function(response){
             return response.data.results;
         });
     };
 
     object.get = function(id){
-        return ApiRequest.get("/Tour/"+id+"?include=Country")
+        return ApiRequest.get("/Tour/"+id+"?include=Country,place,hotel")
         .then(function(response){
             return response.data;
         });
@@ -25,7 +25,7 @@ angular.module('travelerjs').factory('Tours', [ '$http', '$q', 'ApiRequest', fun
     };
 
     object.update = function(id, params){
-        return ApiRequest.put("/Tour/"+id+"?include=Country", params)
+        return ApiRequest.put("/Tour/"+id, params)
             .then(function(response){
                 return response.data;
             });

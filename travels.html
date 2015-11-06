@@ -15,7 +15,7 @@
         <span class="pull-right price">{{tour.price | currency}}</span>
     </div>
     <div class="panel-body">
-        <p class="contry">{{tour.Country.name}}</p>
+        <p class="contry">{{tour.Country.name}}, {{tour.place.name}}</p>
     </div>
     <div class="panel-footer">
         <a ng-href="/admin/tours/{{tour.objectId}}/edit" class="btn btn-success">Редактировать</a>

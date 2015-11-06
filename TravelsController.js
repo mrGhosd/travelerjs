@@ -3,11 +3,9 @@ angular.module('travelerjs').controller('TravelsController', ['tours', '$scope',
     $scope.title = "Список туров";
     $scope.tours = tours;
     $scope.places = places;
+    console.log($scope.tours);
 
     $scope.filterTours = function(){
         var tours = angular.copy($scope.tours);
-        angular.forEach(tours, function(tour, index){
-            console.log(tour, index);
-        });
     }
 }]);

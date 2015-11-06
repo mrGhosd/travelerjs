@@ -32,7 +32,8 @@ angular.module('travelerjs').factory('Place', [ '$http', '$q', 'ApiRequest', fun
     };
 
     object.forCountry = function(countryId){
-        return ApiRequest.get("/Place", {parameters: {where: {country: countryId}}}).then(function(response){
+        return ApiRequest.get("/Place", {'where': {'country': {'__type': 'Pointer', 'className': 'Country', 'objectId': countryId}}, include: 'country'})
+        .then(function(response){
             return response.data.results;
         });
     };

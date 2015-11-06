@@ -8,7 +8,7 @@
     <div class="form-group">
         <label class="control-label col-md-2">Страна</label>
         <div class="col-md-4">
-            <select ng-model="tour.country">
+            <select ng-model="tour.country" ng-change="findPlaces()">
                 <option ng-repeat="country in countries" value="{{country.objectId}}" ng-selected="tour.Country.name === country.name">
                     {{country.name}}
                 </option>

@@ -14,9 +14,12 @@ angular.module('travelerjs').controller('ToursFormController', ["$scope", "$loca
     Countries.getAll().then(function(response){
        $scope.countries = response;
     });
-    Place.getAll().then(function(response){
-        $scope.places = response;
-    });
+
+    $scope.findPlaces = function(){
+       Place.forCountry($scope.tour.country).then(function(response){
+           $scope.places = response;
+       });
+    };
 
     $scope.saveTour = function(){
         var tourForm = angular.copy($scope.tour);

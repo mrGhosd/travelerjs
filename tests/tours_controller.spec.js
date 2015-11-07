@@ -6,9 +6,8 @@ describe("ToursController", function(){
     var tours = [];
 
     beforeEach(inject(function($controller, $httpBackend){
-        $httpBackend.whenGET('https://api.parse.com/1/classe/Tour').respond(200);
+        httpBackend = $httpBackend;
         $controller('TravelsController', {$scope: $scope, countries: countries, tours: tours});
-        //Инициализация контроллера
 
     }));
 
@@ -19,6 +18,13 @@ describe("ToursController", function(){
 
         it('sets tours to resolved value', function(){
             expect($scope.tours).toEqual(tours);
+        });
+    });
+
+    describe('tours list in router resolve', function(){
+        it("Make request for tours", function(){
+            httpBackend.expectGET("https://api.parse.com/1/classes/Tour?include=Country,place,hotel").respond(200);
+            httpBackend.verifyNoOutstandingExpectation();
         });
     });
 });

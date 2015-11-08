@@ -17,6 +17,7 @@ describe("ToursController", function(){
         Country = Countries;
         q = $q;
         spyOn(Tours, 'getAll').and.returnValues([]);
+        spyOn(Country, 'getAll').and.returnValues([]);
     }));
 
     beforeEach(function(){

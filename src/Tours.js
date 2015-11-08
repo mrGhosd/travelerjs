@@ -19,7 +19,7 @@ angular.module('travelerjs').factory('Tours', [ '$http', '$q', 'ApiRequest', fun
     };
 
     object.create = function(params){
-        return ApiRequest.post("/Tour?include=Country", params)
+        return ApiRequest.post("/Tour", params)
             .then(function(response){
                 return response.data;
             });

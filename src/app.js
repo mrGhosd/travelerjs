@@ -3,15 +3,7 @@ angular.module('travelerjs', ['ngRoute'])
         $routeProvider
             .when('/', {
                 templateUrl: 'travels.html',
-                controller: 'TravelsController',
-                resolve: {
-                    tours: ['Tours', function(Tours){
-                        return Tours.getAll();
-                    }],
-                    countries: ['Countries', function(Countries){
-                       return Countries.getAll();
-                    }]
-                }
+                controller: 'TravelsController'
             })
             .when('/admin/tours/:slug/edit', {
                 templateUrl: 'form.html',

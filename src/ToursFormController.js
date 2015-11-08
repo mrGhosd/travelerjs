@@ -52,8 +52,8 @@ angular.module('travelerjs').controller('ToursFormController', ["$scope", "$loca
             place: {__type: "Pointer", className: "Place", objectId: tourForm.place.objectId || tourForm.place},
             hotel: {__type: "Pointer", className: "Hotel", objectId: tourForm.hotel}
         };
-        console.log(tourForm);
-        if(formAction === 'create'){
+
+        if (formAction === 'create'){
             Tours.create(tour)
                 .then(function(response) {
                     $location.path('/');

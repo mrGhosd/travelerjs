@@ -1,11 +1,20 @@
-angular.module('travelerjs').controller('TravelsController', ['$scope', '$http', 'countries', 'Place', 'tours',
-    function($scope, $http, countries, Place, tours){
+angular.module('travelerjs').controller('TravelsController', ['$scope', '$http', 'Place', 'Tours', 'Countries',
+    function($scope, $http, Place, Tours, Countries){
     $scope.title = "Список туров";
-    $scope.tours = tours;
+    $scope.tours = [];
+    $scope.countries = [];
     $scope.places = [];
     var sortedByCountry = [];
-    var toursList = tours;
-    $scope.countries = countries;
+    var toursList = [];
+
+    Tours.getAll().then(function(response){
+        $scope.tours = response;
+        toursList = response;
+    });
+
+    Countries.getAll().then(function(response){
+        $scope.countries = response;
+    });
 
     $scope.filterByCountry = function(){
         var filterTours = [];

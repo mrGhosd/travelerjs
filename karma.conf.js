@@ -22,7 +22,7 @@ module.exports = function(config) {
         'node_modules/angular-mocks/angular-mocks.js',
         'src/*.js',
         'src/*.html',
-        'tests/*.js'
+        'tests/api_request.spec.js'
     ],
 
 

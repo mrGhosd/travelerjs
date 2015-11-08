@@ -5,7 +5,9 @@ angular.module('travelerjs').factory('Tours', [ '$http', '$q', 'ApiRequest', fun
     };
 
     object.getAll = function() {
-        return ApiRequest.get("/Tour?include=Country,place,hotel").then(function(response){
+        return ApiRequest.get("/Tour?include=Country,place,hotel")
+        .then(function(response){
+            console.log(response);
             return response.data.results;
         });
     };

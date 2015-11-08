@@ -5,6 +5,7 @@ angular.module('travelerjs', ['ngRoute'])
                 templateUrl: 'travels.html',
                 controller: 'TravelsController'
             })
+
             .when('/admin/tours/:slug/edit', {
                 templateUrl: 'form.html',
                 controller: 'ToursFormController',

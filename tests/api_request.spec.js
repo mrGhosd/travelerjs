@@ -1,5 +1,5 @@
 describe('ApiRequest', function(){
-    beforeEach(angular.mock.module('travelerjs'));
+    beforeEach(module('travelerjs'));
 
     var apiRequest = null;
     var httpBackend = null;
@@ -8,6 +8,10 @@ describe('ApiRequest', function(){
         httpBackend = $httpBackend;
         apiRequest = ApiRequest;
     }));
+
+    beforeEach(function(){
+        httpBackend.whenGET("travels.html").respond(200);
+    });
 
     describe("Initial value", function(){
         it("check that service exists", function() {
@@ -18,7 +22,6 @@ describe('ApiRequest', function(){
     describe('GET request', function(){
         it("make a get request", function(){
             httpBackend.expectGET("https://api.parse.com/1/classes/Tour").respond(200);
-            httpBackend.expectGET("travels.html").respond(200);
             apiRequest.get('/Tour');
             httpBackend.flush();
         });
@@ -27,7 +30,6 @@ describe('ApiRequest', function(){
     describe('POST request', function(){
         it("make a post request", function(){
             httpBackend.expectPOST("https://api.parse.com/1/classes/Tour").respond(200);
-            httpBackend.expectGET("travels.html").respond(200);
             apiRequest.post('/Tour');
             httpBackend.flush();
         });
@@ -37,7 +39,6 @@ describe('ApiRequest', function(){
         it("make a put request", function(){
             var tour = {objectId: 1, name: "Ololo"};
             httpBackend.expectPUT("https://api.parse.com/1/classes/Tour/"+tour.objectId).respond(200);
-            httpBackend.expectGET("travels.html").respond(200);
             apiRequest.put('/Tour/'+tour.objectId);
             httpBackend.flush();
         });

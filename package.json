@@ -16,5 +16,8 @@
   },
   "scripts": {
     "test": "karma start"
+  },
+  "dependencies": {
+    "ng-file-upload": "^10.0.2"
   }
 }

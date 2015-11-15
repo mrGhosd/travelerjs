@@ -2,18 +2,17 @@ angular.module('travelerjs', ['ngRoute'])
     .config(function($routeProvider, $locationProvider, $httpProvider){
         $routeProvider
             .when('/', {
-                templateUrl: 'travels.html',
+                templateUrl: 'tours/travels.html',
                 controller: 'TravelsController'
             })
 
             .when('/admin/tours/:slug/edit', {
-                templateUrl: 'form.html',
-                controller: 'ToursFormController',
-                resolve: {
-                    formAction: function(){
-                        return "edit";
-                    }
-                }
+                templateUrl: 'tours/edit_form.html',
+                controller: 'TourUpdateFormController'
+            })
+            .when('/admin/tours/new', {
+                templateUrl: 'tours/create_form.html',
+                controller: 'TourCreateFormController'
             })
             .when('/places', {
                 templateUrl: 'places_list.html',
@@ -42,17 +41,8 @@ angular.module('travelerjs', ['ngRoute'])
                     }
                 }
             })
-            .when('/admin/tours/new', {
-                templateUrl: 'form.html',
-                controller: 'ToursFormController',
-                resolve: {
-                    formAction: function(){
-                        return "create";
-                    }
-                }
-            })
             .when('/tours/:slug', {
-                templateUrl: "tour.html",
+                templateUrl: "tours/tour.html",
                 controller: 'TourDetailController',
                 resolve: {
                     tour: ['Tours', '$route', function(Tours, $route){

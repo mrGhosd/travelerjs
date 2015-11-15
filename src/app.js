@@ -88,7 +88,7 @@ angular.module('travelerjs', ['ngRoute'])
             })
 
             .when('/hotels', {
-                templateUrl: 'hotels_list.html',
+                templateUrl: 'hotels/hotels_list.html',
                 controller: 'HotelsController',
                 resolve: {
                     hotels: ['Hotel', function(Hotel){
@@ -97,22 +97,12 @@ angular.module('travelerjs', ['ngRoute'])
                 }
             })
             .when('/admin/hotels/new', {
-                templateUrl: 'hotels_form.html',
-                controller: 'HotelsFormController',
-                resolve: {
-                    formAction: function(){
-                        return 'create';
-                    }
-                }
+                templateUrl: 'hotels/create_form.html',
+                controller: 'HotelsCreateFormController'
             })
             .when('/admin/hotels/:id/edit', {
-                templateUrl: 'hotels_form.html',
-                controller: 'HotelsFormController',
-                resolve: {
-                    formAction: function(){
-                        return 'edit';
-                    }
-                }
+                templateUrl: 'hotels/edit_form.html',
+                controller: 'HotelsUpdateFormController'
             })
             .otherwise({
                 redirectTo: '/'

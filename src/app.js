@@ -51,34 +51,15 @@ angular.module('travelerjs', ['ngRoute'])
                 }
             })
             .when('/admin/countries/new', {
-                templateUrl: 'country_form.html',
-                controller: 'CountryFormController',
-                resolve: {
-                    formAction: function(){
-                        return "create";
-                    }
-                }
-            })
-            .when('/admin/countries', {
-                templateUrl: 'countries_list.html',
-                controller: 'CountriesController',
-                resolve: {
-                    countries: ['Countries', function(Countries){
-                        return Countries.getAll();
-                    }]
-                }
+                templateUrl: 'countries/create_form.html',
+                controller: 'CountryCreateFormController'
             })
             .when('/admin/countries/:slug/edit', {
-                templateUrl: 'country_form.html',
-                controller: 'CountryFormController',
-                resolve: {
-                    formAction: function(){
-                        return "edit";
-                    }
-                }
+                templateUrl: 'countries/edit_form.html',
+                controller: 'CountryUpdateFormController'
             })
             .when('/countries', {
-                templateUrl: 'countries_list.html',
+                templateUrl: 'countries/countries_list.html',
                 controller: 'CountriesController',
                 resolve: {
                     countries: ['Countries', function(Countries){

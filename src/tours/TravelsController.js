@@ -16,6 +16,10 @@ angular.module('travelerjs').controller('TravelsController', ['$scope', '$http',
         $scope.countries = response;
     });
 
+    Place.getAll().then(function(response) {
+        $scope.places = response;
+    });
+
     $scope.filterByCountry = function(){
         var filterTours = [];
         var selectedCountry;
@@ -28,9 +32,6 @@ angular.module('travelerjs').controller('TravelsController', ['$scope', '$http',
         });
         sortedByCountry = filterTours;
         $scope.tours = filterTours;
-        Place.forCountry(selectedCountry).then(function(response){
-            $scope.places = response;
-        });
     };
 
     $scope.filterByPlace = function(){

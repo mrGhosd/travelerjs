@@ -18,7 +18,7 @@ describe("TourService", function(){
     }));
 
     beforeEach(function(){
-        httpBackend.whenGET("travels.html").respond(200);
+        httpBackend.whenGET("tours/travels.html").respond(200);
     });
 
     describe("#getAll()", function(){

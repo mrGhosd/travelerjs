@@ -23,7 +23,7 @@ describe("ToursController", function(){
     beforeEach(function(){
         toursResponse = httpBackend.when('GET', 'https://api.parse.com/1/classes/Tour?include=Country,place,hotel').respond(200);
         countriesResponse = httpBackend.whenGET("https://api.parse.com/1/classes/Country?include=place").respond(200);
-        httpBackend.whenGET("travels.html").respond(200);
+        httpBackend.whenGET("tours/travels.html").respond(200);
     });
 
     afterEach(function() {

@@ -10,7 +10,7 @@ describe('ApiRequest', function(){
     }));
 
     beforeEach(function(){
-        httpBackend.whenGET("travels.html").respond(200);
+        httpBackend.whenGET("tours/travels.html").respond(200);
     });
 
     describe("Initial value", function(){

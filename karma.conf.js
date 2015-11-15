@@ -20,7 +20,7 @@ module.exports = function(config) {
         'node_modules/angular-route/angular-route.js',
         'node_modules/angular-resource/angular-resource.js',
         'node_modules/angular-mocks/angular-mocks.js',
-        'src/*.js',
+        'src/**/*.js',
         'src/**/*.html',
         'tests/*.js'
     ],
@@ -34,8 +34,8 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-        'src/*.html': ['ng-html2js'],
-        'src/*.js': ['coverage']
+        '**/*.html': ['ng-html2js'],
+        '**/*.js': ['coverage']
     },
 
     ngHtml2JsPreprocessor: {

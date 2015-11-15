@@ -14,8 +14,9 @@ angular.module('travelerjs', ['ngRoute'])
                 templateUrl: 'tours/create_form.html',
                 controller: 'TourCreateFormController'
             })
+
             .when('/places', {
-                templateUrl: 'places_list.html',
+                templateUrl: 'places/places_list.html',
                 controller: 'PlacesController',
                 resolve: {
                     places: ['Place', function(Place){
@@ -24,22 +25,12 @@ angular.module('travelerjs', ['ngRoute'])
                 }
             })
             .when('/admin/places/new', {
-                templateUrl: 'place_form.html',
-                controller: 'PlacesFormController',
-                resolve: {
-                    formAction: function(){
-                        return "create";
-                    }
-                }
+                templateUrl: 'places/create_form.html',
+                controller: 'PlacesCreateFormController'
             })
             .when('/admin/places/:id/edit', {
-                templateUrl: 'place_form.html',
-                controller: 'PlacesFormController',
-                resolve: {
-                    formAction: function(){
-                        return "edit";
-                    }
-                }
+                templateUrl: 'places/edit_form.html',
+                controller: 'PlacesUpdateFormController'
             })
             .when('/tours/:slug', {
                 templateUrl: "tours/tour.html",

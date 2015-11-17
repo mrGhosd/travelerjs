@@ -1,4 +1,4 @@
-angular.module('travelerjs').factory('Tours', [ '$http', '$q', 'ApiRequest', function($http, $q, ApiRequest){
+angular.module('travelerjs').factory('Tours', [ '$http', 'ApiRequest', function($http, ApiRequest){
     var object = {
         tours: [],
         searchResults: []

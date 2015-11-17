@@ -1,7 +1,7 @@
 angular.module('travelerjs').controller('TourUpdateFormController', ["$scope", "$location",
-    "$route", 'Tours', 'Countries', 'Place', 'Hotel', function($scope, $location, $route, Tours, Countries, Place, Hotel){
+    "$route", 'Tours', 'Countries', 'Place', 'Hotel', function($scope, $location, $routeParams, Tours, Countries, Place, Hotel){
         var allPlaces = [];
-        Tours.get($route.current.params.slug).then(function(response){
+        Tours.get($routeParams.slug).then(function(response){
             $scope.tour = response;
             $scope.tour.country = response.Country.objectId;
             $scope.tour.place = response.place;

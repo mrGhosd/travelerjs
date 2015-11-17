@@ -1,6 +1,6 @@
-angular.module('travelerjs').controller('PlacesUpdateFormController', ['$scope', '$route',
-    'Place', '$location', 'Countries', function($scope, $route, Place, $location, Countries){
-    Place.get($route.current.params.id).then(function(response) {
+angular.module('travelerjs').controller('PlacesUpdateFormController', ['$scope', '$routeParams',
+    'Place', '$location', 'Countries', function($scope, $routeParams, Place, $location, Countries){
+    Place.get($routeParams.id).then(function(response) {
         $scope.place = response;
         $scope.place.country = response.country.objectId;
     });

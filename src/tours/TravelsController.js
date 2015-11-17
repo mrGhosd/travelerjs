@@ -1,5 +1,5 @@
-angular.module('travelerjs').controller('TravelsController', ['$scope', '$http', 'Place', 'Tours', 'Countries',
-    function($scope, $http, Place, Tours, Countries){
+angular.module('travelerjs').controller('TravelsController', ['$scope', 'Place', 'Tours', 'Countries',
+    function($scope, Place, Tours, Countries){
     $scope.title = "Список туров";
     $scope.tours = [];
     $scope.countries = [];

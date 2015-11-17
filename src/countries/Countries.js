@@ -1,8 +1,6 @@
-angular.module('travelerjs').factory('Countries', [ '$http', '$q', 'ApiRequest', function($http, $q, ApiRequest){
-    var object = {
-        countries: [],
-        searchResults: []
-    };
+angular.module('travelerjs').factory('Countries', [ '$http', 'ApiRequest', function($http, ApiRequest){
+    var object = {};
+
     object.getAll = function() {
         return ApiRequest.get("/Country?include=place")
         .then(function(response){

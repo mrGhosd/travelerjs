@@ -1,5 +1,5 @@
-angular.module('travelerjs').controller('CountryCreateFormController', ['$scope', '$route', '$location',
-    'Countries', 'Place',  function($scope, $route, $location, Countries, Place){
+angular.module('travelerjs').controller('CountryCreateFormController', ['$scope', '$location',
+    'Countries', 'Place',  function($scope, $location, Countries, Place){
         $scope.country = {};
 
         Place.getAll().then(function(response){

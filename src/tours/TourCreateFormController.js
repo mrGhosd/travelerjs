@@ -1,5 +1,5 @@
-angular.module('travelerjs').controller('TourCreateFormController', ["$scope", "$location",
-    "$route", 'Tours', 'Countries', 'Place', 'Hotel', function($scope, $location, $route, Tours, Countries, Place, Hotel){
+angular.module('travelerjs').controller('TourCreateFormController', ["$scope", "$location", 'Tours',
+    'Countries', 'Place', 'Hotel', function($scope, $location, Tours, Countries, Place, Hotel){
         var allPlaces = [];
         $scope.tour = {};
 

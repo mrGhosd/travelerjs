@@ -1,4 +1,4 @@
-angular.module('travelerjs').controller('TourDetailController', ['$scope', '$routeParams',
-    'tour', function($scope, $routeParams, tour){
+angular.module('travelerjs').controller('TourDetailController', ['$scope',
+    'tour', function($scope, tour){
     $scope.tour = tour;
 }]);

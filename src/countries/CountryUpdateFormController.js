@@ -1,9 +1,11 @@
-angular.module('travelerjs').controller('CountryUpdateFormController', ['$scope', '$route', '$location',
-    'Countries', 'Place',  function($scope, $route, $location, Countries, Place){
+angular.module('travelerjs').controller('CountryUpdateFormController', ['$scope', '$routeParams', '$location',
+    'Countries', 'Place',  function($scope, $routeParams, $location, Countries, Place){
+
         Place.getAll().then(function(response){
             $scope.places = response;
         });
-        Countries.get($route.current.params.slug).then(function(response){
+
+        Countries.get($routeParams.slug).then(function(response){
             $scope.country = response;
             $scope.country.place = response.place;
         });

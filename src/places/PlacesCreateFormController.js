@@ -1,5 +1,5 @@
-angular.module('travelerjs').controller('PlacesCreateFormController', ['$scope', '$route',
-    'Place', '$location', 'Countries', function($scope, $route, Place, $location, Countries){
+angular.module('travelerjs').controller('PlacesCreateFormController', ['$scope',
+    'Place', '$location', 'Countries', function($scope, Place, $location, Countries){
 
     $scope.place = {};
 

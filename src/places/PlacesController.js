@@ -1,4 +1,4 @@
-angular.module('travelerjs').controller('PlacesController', ['$scope', '$routeParams',
-    'places', function($scope, $routeParams, places){
+angular.module('travelerjs').controller('PlacesController', ['$scope', 'places',
+    function($scope, places){
         $scope.places = places;
     }]);

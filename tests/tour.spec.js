@@ -56,7 +56,7 @@ describe("TourService", function(){
                tourData = response;
             });
             httpBackend.flush();
-            expect(tour).toEqual(tour);
+            expect(tourData).toEqual(tour);
         });
     });
 
@@ -70,7 +70,7 @@ describe("TourService", function(){
                 serverTour = response;
             });
             httpBackend.flush();
-            expect(tour).toEqual(tour);
+            expect(serverTour).toEqual(tour);
         });
     });
 });

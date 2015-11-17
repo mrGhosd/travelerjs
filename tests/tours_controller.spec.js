@@ -5,17 +5,20 @@ describe("ToursController", function(){
     var countries = [];
     var Tour = {};
     var Country = {};
+    var Places = {};
     var toursResponse = null;
     var countriesResponse = null;
+    var placesResponse = null;
     var q = {};
     var controller = {};
 
-    beforeEach(inject(function($controller, $httpBackend, Tours, Countries, $q){
+    beforeEach(inject(function($controller, $httpBackend, Tours, Countries, Place){
         $controller('TravelsController', { $scope: $scope});
         httpBackend = $httpBackend;
         Tour = Tours;
         Country = Countries;
-        q = $q;
+        Places = Place;
+
         spyOn(Tours, 'getAll').and.returnValues([]);
         spyOn(Country, 'getAll').and.returnValues([]);
     }));
@@ -23,6 +26,7 @@ describe("ToursController", function(){
     beforeEach(function(){
         toursResponse = httpBackend.when('GET', 'https://api.parse.com/1/classes/Tour?include=Country,place,hotel').respond(200);
         countriesResponse = httpBackend.whenGET("https://api.parse.com/1/classes/Country?include=place").respond(200);
+        placesResponse = httpBackend.whenGET('https://api.parse.com/1/classes/Place?include=country').respond(200);
         httpBackend.whenGET("tours/travels.html").respond(200);
     });
 
@@ -34,6 +38,7 @@ describe("ToursController", function(){
     describe('tours list in router resolve', function(){
         beforeEach(function(){
             countriesResponse.respond(200, []);
+            placesResponse.respond(200, []);
         });
 
         it("Make request for tours", function(){
@@ -48,6 +53,7 @@ describe("ToursController", function(){
     describe("countries list load", function(){
         beforeEach(function(){
             toursResponse.respond(200, []);
+            placesResponse.respond(200, []);
         });
 
         it("Make request for countries", function(){
@@ -56,6 +62,21 @@ describe("ToursController", function(){
             Country.getAll();
             httpBackend.flush();
             expect($scope.countries.length).toBe(1)
+        });
+    });
+
+    describe("places list load", function(){
+        beforeEach(function(){
+            toursResponse.respond(200, []);
+            countriesResponse.respond(200, []);
+        });
+
+        it("Make request for countries", function(){
+            var places = { results: [{id: 1, name: "Edmonton"}] };
+            placesResponse.respond(200, places);
+            Places.getAll();
+            httpBackend.flush();
+            expect($scope.places.length).toBe(1)
         });
     });
 

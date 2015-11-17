@@ -1,4 +1,4 @@
-angular.module('travelerjs').controller('HotelsController', ['$scope', '$routeParams', 'hotels',
-    function($scope, $routeParams, hotels){
+angular.module('travelerjs').controller('HotelsController', ['$scope', 'hotels',
+    function($scope, hotels){
         $scope.hotels = hotels;
     }]);

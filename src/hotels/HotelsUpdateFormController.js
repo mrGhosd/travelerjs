@@ -1,6 +1,6 @@
-angular.module('travelerjs').controller('HotelsUpdateFormController', ['$scope', '$route', '$location',
-    'Hotel',  function($scope, $route, $location, Hotel){
-    Hotel.get($route.current.params.id).then(function(response){
+angular.module('travelerjs').controller('HotelsUpdateFormController', ['$scope', '$routeParams', '$location',
+    'Hotel',  function($scope, $routeParams, $location, Hotel){
+    Hotel.get($routeParams.id).then(function(response){
         $scope.hotel = response;
     });
 

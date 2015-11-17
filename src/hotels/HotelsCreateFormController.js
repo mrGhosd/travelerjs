@@ -1,5 +1,5 @@
-angular.module('travelerjs').controller('HotelsCreateFormController', ['$scope', '$route', '$location',
-    'Hotel',  function($scope, $route, $location, Hotel){
+angular.module('travelerjs').controller('HotelsCreateFormController', ['$scope', '$location',
+    'Hotel',  function($scope, $location, Hotel){
 
     $scope.hotel = {};
 

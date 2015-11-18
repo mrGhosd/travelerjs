@@ -1,0 +1,15 @@
+<a href="/admin/hotels/new" class="btn btn-primary">Добавить отель</a>
+<table class="table table-bordered">
+    <tr>
+        <th>Название</th>
+        <th>Число звезд</th>
+        <th>Действия</th>
+    </tr>
+    <tr ng-repeat="hotel in hotels">
+        <td>{{hotel.name}}</td>
+        <td>{{hotel.stars}}</td>
+        <td>
+            <a ng-href="/admin/hotels/{{hotel.objectId}}/edit" class="btn btn-success"> Редактировать</a>
+        </td>
+    </tr>
+</table>

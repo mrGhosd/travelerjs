@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='travelerjs'>
+    <head>
+        <meta charset="UTF-8">
+        <title>{{::title}}</title>
+        <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+        <base href="/">
+    </head>
+    <body>
+        <div class="wrapper">
+
+            <div class="container">
+                <ng-view></ng-view>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+
+        <script type="text/javascript" src="ApiRequest.js"></script>
+
+        <script type="text/javascript" src="tours/TravelsController.js"></script>
+        <script type="text/javascript" src="tours/TourCreateFormController.js"></script>
+        <script type="text/javascript" src="tours/TourUpdateFormController.js"></script>
+        <script type="text/javascript" src="tours/TourDetailController.js"></script>
+        <script type="text/javascript" src="tours/Tours.js"></script>
+
+        <script type="text/javascript" src="hotels/HotelsController.js"></script>
+        <script type="text/javascript" src="hotels/HotelsCreateFormController.js"></script>
+        <script type="text/javascript" src="hotels/HotelsUpdateFormController.js"></script>
+        <script type="text/javascript" src="hotels/Hotel.js"></script>
+
+        <script type="text/javascript" src="countries/CountryCreateFormController.js"></script>
+        <script type="text/javascript" src="countries/CountryUpdateFormController.js"></script>
+        <script type="text/javascript" src="countries/CountriesController.js"></script>
+        <script type="text/javascript" src="countries/Countries.js"></script>
+
+        <script type="text/javascript" src="places/PlacesController.js"></script>
+        <script type="text/javascript" src="places/PlacesCreateFormController.js"></script>
+        <script type="text/javascript" src="places/PlacesUpdateFormController.js"></script>
+        <script type="text/javascript" src="places/Place.js"></script>
+
+    </body>
+</html>
